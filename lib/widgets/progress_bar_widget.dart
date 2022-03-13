@@ -1,50 +1,46 @@
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 class RadialProgressBar extends StatefulWidget {
-  RadialProgressBar({Key? key}) : super(key: key);
+  final double sizeBar;
+  final double percent;
+  RadialProgressBar({Key? key, required this.sizeBar,required this.percent}) : super(key: key);
 
   @override
   State<RadialProgressBar> createState() => _RadialProgressBarState();
 }
 
 class _RadialProgressBarState extends State<RadialProgressBar> {
-  double mySize = 70;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return Container(
         alignment: Alignment.centerLeft,
         child: SizedBox(
-          width: mySize,
-          height: mySize,
-// decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+          width: widget.sizeBar,
+          height: widget.sizeBar,
           child: RadialPercentWidget(
-            percent: 15,
-            sizeProgressiveBar: mySize,
+            percent: widget.percent,
+            sizeBar: widget.sizeBar,
             backgroundColor: const Color.fromARGB(255, 10, 23, 25),
             coverColor: const Color.fromARGB(255, 25, 54, 31),
             scaleColor: const Color.fromARGB(255, 37, 203, 103),
           ),
         ),
-      ),
     );
   }
 }
 
 class RadialPercentWidget extends StatelessWidget {
   final double percent;
-  final double sizeProgressiveBar;
+  final double sizeBar;
   final Color backgroundColor;
   final Color coverColor;
   final Color scaleColor;
   const RadialPercentWidget(
       {Key? key,
       required this.percent,
-      required this.sizeProgressiveBar,
+      required this.sizeBar,
       required this.backgroundColor,
       required this.coverColor,
       required this.scaleColor})
@@ -56,7 +52,7 @@ class RadialPercentWidget extends StatelessWidget {
       CustomPaint(
           painter: MyPainter(
               percent: percent,
-              sizeWidget: sizeProgressiveBar,
+              sizeWidget: sizeBar,
               backgroundColor: backgroundColor,
               coverColor: coverColor,
               lineColor: scaleColor)),
@@ -65,14 +61,14 @@ class RadialPercentWidget extends StatelessWidget {
         children: [
           Text('${percent.toInt()}',
               style: TextStyle(
-                  fontSize: sizeProgressiveBar / 3, color: Colors.white)),
+                  fontSize: sizeBar / 3, color: Colors.white)),
           Baseline(
             baseline: 0,
             baselineType: TextBaseline.ideographic,
             child: Text(
               '%',
               style: TextStyle(
-                  fontSize: sizeProgressiveBar / 6, color: Colors.white),
+                  fontSize: sizeBar / 6, color: Colors.white),
             ),
           )
         ],
@@ -136,7 +132,6 @@ class MyPainter extends CustomPainter {
             widthScale / 2 + sizeWidget / 24) &
         Size(size.width - widthScale - sizeWidget / 12,
             size.height - widthScale - sizeWidget / 12);
-    ;
   }
 
   @override

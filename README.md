@@ -1,7 +1,8 @@
-# the_movie_database
+# the_movie_db
 
-A new Flutter project.
-
+App => The movie database 
+https://www.themoviedb.org/
+Lessons => https://www.youtube.com/channel/UCZz15W_tnfs4DxVsWCrTHJw
 ## Getting Started
 
 This project is a starting point for a Flutter application.

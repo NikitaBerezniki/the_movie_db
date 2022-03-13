@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../main.dart';
+import '../resources/styles.dart';
 
 AppBar simpleAppBar() {
   return AppBar(
-    backgroundColor: AppStyleClass.backgroundColor,
+    backgroundColor: AppColorStyle.blueBackgroundColor,
     title: IconButton(
         icon: Image.asset('images/logo.png'),
         iconSize: 50,

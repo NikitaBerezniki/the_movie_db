@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
-import 'widgets/app_bar_widget.dart';
-import 'main.dart';
-import 'movie_list_page.dart';
+import 'package:the_movie_db/resources/styles.dart';
+import 'package:the_movie_db/widgets/app_bar_widget.dart';
+import 'example/test_func_did_update_widget.dart';
+import 'movie_list/movie_list_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedTab = 1;
+  int _selectedTab = 2;
 
   void _onSelectedItem(int index) {
     setState(() {
@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
       body: IndexedStack(index: _selectedTab, children: const [
         Text('123'),
         MovieListPage(),
-        Text('657567'),
+        MyDidUpdateWidget(),
       ]),
       appBar: simpleAppBar(),
       // drawer: CategoriesDrawerWidget(),
@@ -36,9 +36,9 @@ class _MainPageState extends State<MainPage> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         iconSize: 24,
-        selectedItemColor: AppStyleClass.whiteColor,
-        backgroundColor: AppStyleClass.backgroundColor,
-        unselectedItemColor: AppStyleClass.blueAccentColor,
+        selectedItemColor: AppColorStyle.whiteColor,
+        backgroundColor: AppColorStyle.blueBackgroundColor,
+        unselectedItemColor: AppColorStyle.blueAccentColor,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../main.dart';
+import '../resources/styles.dart';
 
 class CategoriesDrawerWidget extends StatelessWidget {
   const CategoriesDrawerWidget({
@@ -10,12 +9,12 @@ class CategoriesDrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-        backgroundColor: AppStyleClass.backgroundColor,
+        backgroundColor: AppColorStyle.blueBackgroundColor,
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           children: const [
-            Text('Фильмы', style: AppStyleClass.textStyleDrawer),
-            Text('Сериалы', style: AppStyleClass.textStyleDrawer)
+            Text('Фильмы', style: AppTextStyle.textStyleDrawer),
+            Text('Сериалы', style: AppTextStyle.textStyleDrawer)
           ],
         ));
   }
