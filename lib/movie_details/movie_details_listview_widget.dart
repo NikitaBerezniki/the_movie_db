@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../movie_list/movie_list_page.dart';
 import '../widgets/app_bar_widget.dart';
 import 'movie_details_cast_widget.dart';
-import 'movie_details_top_widet.dart';
 import 'my_movie_details.dart';
 
 class MovieDetailsWidgetEducation extends StatefulWidget {

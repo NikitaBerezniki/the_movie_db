@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:the_movie_db/resources/styles.dart';
 
 import '../resources/images.dart';
 
@@ -122,5 +120,3 @@ class MovieDetailsCastWidget extends StatelessWidget {
     );
   }
 }
-
-//                           Text('Tom Holland Peter Parker / Spider-Man')

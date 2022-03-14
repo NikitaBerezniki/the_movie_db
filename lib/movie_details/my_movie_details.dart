@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../movie_list/movie_list_page.dart';
 import '../resources/styles.dart';
-import '../widgets/app_bar_widget.dart';
 import '../widgets/progress_bar_widget.dart';
 
 class MyMovieDetailsPage extends StatefulWidget {
