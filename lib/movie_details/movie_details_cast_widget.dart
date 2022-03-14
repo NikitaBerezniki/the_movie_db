@@ -9,6 +9,7 @@ class MovieDetailsCastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController _scrollController = ScrollController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -19,17 +20,18 @@ class MovieDetailsCastWidget extends StatelessWidget {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBox(
-          height: 250,
-          child: Scrollbar(
+        Scrollbar(
+          controller: _scrollController,
+          child: SizedBox(
+            height: 250,
             child: ListView.builder(
+              controller: _scrollController,
               itemCount: 10,
               itemExtent: 120,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 if (index == 9) {
                   return TextButton(
-                    
                     onPressed: () {},
                     child: Row(
                       children: const [
