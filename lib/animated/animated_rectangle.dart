@@ -32,12 +32,12 @@ class _MyDidUpdateWidgetState extends State<MyDidUpdateWidget> {
           child: Container(
             width: 200,
             color: Colors.green,
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(30),
             child: CollapseAnimatedBox(
               isCollapse: _isCollapse,
-              duration: Duration(milliseconds: 100),
+              duration: Duration(milliseconds: 400),
               child: Container(
-                height: 100,
+                height: 200,
                 color: Colors.blue,
               ),
             ),
@@ -48,6 +48,7 @@ class _MyDidUpdateWidgetState extends State<MyDidUpdateWidget> {
   }
 }
 
+// ignore: must_be_immutable
 class CollapseAnimatedBox extends StatefulWidget {
   final Widget child;
 
@@ -97,14 +98,15 @@ class _CollapseAnimatedBoxState extends State<CollapseAnimatedBox>
   @override
   Widget build(BuildContext context) {
     return SizeTransition(
-      sizeFactor: CurvedAnimation(
-          parent: _animationController, curve: Curves.easeInOut),
-      axisAlignment: 0.0,
-      child: FadeTransition(
-          opacity: CurvedAnimation(
-              parent: _animationController, curve: Curves.linear),
-          child: widget.child),
-    );
+        sizeFactor:
+            CurvedAnimation(parent: _animationController, curve: Curves.ease),
+        axisAlignment: 10,
+        child: widget.child
+        // FadeTransition(
+        //     opacity: CurvedAnimation(
+        //         parent: _animationController, curve: Curves.bounceOut),
+        //     child: widget.child),
+        );
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/resources/styles.dart';
 import 'package:the_movie_db/widgets/app_bar_widget.dart';
-import 'example/my_did_update_widget.dart';
+import 'animated/animated_rectangle.dart';
 import 'movie_listview/movie_listview.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,7 +13,6 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedTab = 2;
-
   void _onSelectedItem(int index) {
     setState(() {
       _selectedTab = index;
