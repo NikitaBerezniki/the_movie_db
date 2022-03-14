@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/resources/styles.dart';
 import 'package:the_movie_db/widgets/app_bar_widget.dart';
-import 'example/test_func_did_update_widget.dart';
-import 'movie_list/movie_list_page.dart';
+import 'example/did_update_widget.dart';
+import 'movie_listview/movie_listview.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedTab = 2;
+  int _selectedTab = 0;
 
   void _onSelectedItem(int index) {
     setState(() {
@@ -25,8 +25,8 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: IndexedStack(index: _selectedTab, children: const [
         Text('123'),
-        MovieListPage(),
-        MyDidUpdateWidget(),
+        MovieListViewWidget(),
+        // MyDidUpdateWidget(),
       ]),
       appBar: simpleAppBar(),
       // drawer: CategoriesDrawerWidget(),

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import '../movie_list/movie_list_page.dart';
+import '../movie_listview/movie_dataclass.dart';
 import '../widgets/app_bar_widget.dart';
 import 'movie_details_cast_widget.dart';
-import 'my_movie_details.dart';
+import 'movie_details_intro.dart';
 
-class MovieDetailsWidgetEducation extends StatefulWidget {
+class MovieDetailsListViewWdiget extends StatefulWidget {
   final int movieId;
   final ScrollController listViewController = ScrollController();
-  MovieDetailsWidgetEducation({Key? key, required this.movieId})
+  MovieDetailsListViewWdiget({Key? key, required this.movieId})
       : super(key: key);
 
   @override
-  State<MovieDetailsWidgetEducation> createState() =>
-      _MovieDetailsWidgetEducationState();
+  State<MovieDetailsListViewWdiget> createState() =>
+      _MovieDetailsListViewWdigetState();
 }
 
-class _MovieDetailsWidgetEducationState
-    extends State<MovieDetailsWidgetEducation> {
+class _MovieDetailsListViewWdigetState
+    extends State<MovieDetailsListViewWdiget> {
   @override
   void initState() {
     super.initState();
@@ -49,9 +49,13 @@ class _MovieDetailsWidgetEducationState
         controller: widget.listViewController,
         children: [
           ColoredBox(
-              color: Color.fromRGBO(30, 16, 19, 1.0),
-              child: MyMovieDetailsPage(movie: movie)),
-          ColoredBox(color: Colors.white, child: MovieDetailsCastWidget())
+            color: Color.fromRGBO(30, 16, 19, 1.0),
+            child: MyMovieDetailsIntroWidget(movie: movie),
+          ),
+          ColoredBox(
+            color: Colors.white,
+            child: MovieDetailsCastWidget(),
+          ),
         ],
       ),
     );

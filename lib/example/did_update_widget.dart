@@ -18,8 +18,6 @@ class _MyDidUpdateWidgetState extends State<MyDidUpdateWidget> {
   @override
   void didUpdateWidget(covariant MyDidUpdateWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    
-
   }
 
   @override
@@ -81,15 +79,34 @@ class _CollapseAnimatedBoxState extends State<CollapseAnimatedBox>
     }
   }
 
-@override
+  @override
   void didUpdateWidget(covariant CollapseAnimatedBox oldWidget) {
     super.didUpdateWidget(oldWidget);
-       
-    
+    if (oldWidget.isCollapse == widget.isCollapse) return;
+
+    if (widget.isCollapse) {
+      _animationController.reverse();
+    } else {
+      _animationController.forward();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SizeTransition(
+      sizeFactor: CurvedAnimation(
+          parent: _animationController, curve: Curves.easeInOut),
+      axisAlignment: 0.0,
+      child: FadeTransition(
+          opacity: CurvedAnimation(
+              parent: _animationController, curve: Curves.linear),
+          child: widget),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

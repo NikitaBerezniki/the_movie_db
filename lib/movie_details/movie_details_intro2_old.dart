@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/resources/images.dart';
 import 'package:the_movie_db/widgets/progress_bar_widget.dart';
-import '../movie_list/movie_list_page.dart';
+
+import '../movie_listview/movie_dataclass.dart';
+
+
+
+/*
+Версия LOADLAZY
+*/
 
 final textWhite16 = TextStyle(color: Colors.white, fontSize: 16);
 final textWhite18bold =
@@ -189,9 +196,12 @@ class _TopPosterWidget extends StatelessWidget {
     return Stack(
       fit: StackFit.passthrough,
       children: [
-        Image.asset(
-          AppImages.backgroundSpiderMan,
-          fit: BoxFit.fitHeight,
+        AspectRatio(
+          aspectRatio: 16/9,
+          child: Image.asset(
+            AppImages.backgroundSpiderMan2,
+            fit: BoxFit.fitHeight,
+          ),
         ),
         Positioned(
           top: 20,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_movie_db/movie_details/movie_details_listview_widget.dart';
+import 'package:the_movie_db/movie_details/movie_details_listview.dart';
 
 import 'auth/authorization_page.dart';
 import 'main_page.dart';
@@ -24,9 +24,9 @@ class MainWidget extends StatelessWidget {
           '/movie_details_page': (context) {
             final id = ModalRoute.of(context)?.settings.arguments;
             if (id is int) {
-              return MovieDetailsWidgetEducation(movieId: id);
+              return MovieDetailsListViewWdiget(movieId: id);
             } else {
-              return MovieDetailsWidgetEducation(movieId: 0);
+              return MovieDetailsListViewWdiget(movieId: 1);
             }
           },
           '/authorization': (context) => AuthorizationPage(),

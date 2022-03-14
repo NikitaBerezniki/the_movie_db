@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import '../movie_list/movie_list_page.dart';
+import '../movie_listview/movie_dataclass.dart';
 import '../resources/styles.dart';
 import '../widgets/progress_bar_widget.dart';
 
-class MyMovieDetailsPage extends StatefulWidget {
+class MyMovieDetailsIntroWidget extends StatefulWidget {
   final Movie movie;
-  const MyMovieDetailsPage({
+  const MyMovieDetailsIntroWidget({
     Key? key,
     required this.movie,
   }) : super(key: key);
 
   @override
-  State<MyMovieDetailsPage> createState() => _MyMovieDetailsPageState();
+  State<MyMovieDetailsIntroWidget> createState() => _MyMovieDetailsIntroWidgetState();
 }
 
-class _MyMovieDetailsPageState extends State<MyMovieDetailsPage> {
+class _MyMovieDetailsIntroWidgetState extends State<MyMovieDetailsIntroWidget> {
   @override
   Widget build(BuildContext context) {
     final movie = widget.movie;
