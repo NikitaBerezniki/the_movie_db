@@ -25,6 +25,7 @@ class MovieDetailsCastWidget extends StatelessWidget {
           child: SizedBox(
             height: 250,
             child: ListView.builder(
+              padding: EdgeInsets.only(left: 10, bottom: 10),
               controller: _scrollController,
               itemCount: 10,
               itemExtent: 120,

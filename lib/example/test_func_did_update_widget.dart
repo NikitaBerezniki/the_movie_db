@@ -16,6 +16,13 @@ class _MyDidUpdateWidgetState extends State<MyDidUpdateWidget> {
   }
 
   @override
+  void didUpdateWidget(covariant MyDidUpdateWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(children: [
       ElevatedButton(
