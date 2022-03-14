@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:the_movie_db/example/my_did_update_widget.dart';
 import 'package:the_movie_db/movie_details/movie_details_listview.dart';
 
 import 'auth/authorization_page.dart';
 import 'main_page.dart';
-
 
 void main(List<String> args) {
   return runApp(MainWidget());
@@ -18,6 +18,8 @@ class MainWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
+          // '/': (context) => MyDidUpdateWidget(),
+
           '/': (context) => MainPage(),
           '/movie_details_page': (context) {
             final id = ModalRoute.of(context)?.settings.arguments;

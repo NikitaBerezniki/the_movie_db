@@ -12,7 +12,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _selectedTab = 0;
+  int _selectedTab = 2;
 
   void _onSelectedItem(int index) {
     setState(() {
@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> {
         Text('123'),
         MovieListViewWidget(),
         MyDidUpdateWidget(),
-        // Text('123'),
+        Text('123'),
       ]),
       appBar: simpleAppBar(),
       // drawer: CategoriesDrawerWidget(),

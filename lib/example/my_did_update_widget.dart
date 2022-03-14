@@ -22,26 +22,29 @@ class _MyDidUpdateWidgetState extends State<MyDidUpdateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      ElevatedButton(
-          onPressed: _toggle,
-          child: Text(_isCollapse ? 'Развернуть' : 'Свернуть')),
-      Expanded(
-          child: Center(
-        child: Container(
-          color: Colors.green,
-          padding: EdgeInsets.all(10),
-          child: CollapseAnimatedBox(
-            isCollapse: _isCollapse,
-            duration: Duration(milliseconds: 2500),
-            child: Container(
-              height: 100,
-              color: Colors.blue,
+    return Scaffold(
+      body: Column(children: [
+        ElevatedButton(
+            onPressed: _toggle,
+            child: Text(_isCollapse ? 'Развернуть' : 'Свернуть')),
+        Expanded(
+            child: Center(
+          child: Container(
+            width: 200,
+            color: Colors.green,
+            padding: EdgeInsets.all(10),
+            child: CollapseAnimatedBox(
+              isCollapse: _isCollapse,
+              duration: Duration(milliseconds: 100),
+              child: Container(
+                height: 100,
+                color: Colors.blue,
+              ),
             ),
           ),
-        ),
-      ))
-    ]);
+        ))
+      ]),
+    );
   }
 }
 
@@ -100,7 +103,7 @@ class _CollapseAnimatedBoxState extends State<CollapseAnimatedBox>
       child: FadeTransition(
           opacity: CurvedAnimation(
               parent: _animationController, curve: Curves.linear),
-          child: widget),
+          child: widget.child),
     );
   }
 
