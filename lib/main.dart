@@ -19,8 +19,6 @@ class MainWidget extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MainPage(),
-          // '/': (context) => MovieDetailsWidgetEducation(movieId: 1),
-          // '/': (context) => const MovieDetailsPage(movieId: 1),
           '/movie_details_page': (context) {
             final id = ModalRoute.of(context)?.settings.arguments;
             if (id is int) {
