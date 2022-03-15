@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_movie_db/movie_details/movie_details_listview.dart';
 
 import 'auth/authorization_page.dart';
+import 'example/my_keys.dart';
 import 'main_page.dart';
 
 void main(List<String> args) {
@@ -17,7 +18,9 @@ class MainWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => MainPage(),
+          '/': (context) => MyGlobalKeyWidget(),
+
+          // '/': (context) => MainPage(),
           '/movie_details_page': (context) {
             final id = ModalRoute.of(context)?.settings.arguments;
             if (id is int) {
