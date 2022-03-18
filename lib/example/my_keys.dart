@@ -11,10 +11,10 @@ class MyGlobalKeyWidget extends StatelessWidget {
       body: SafeArea(
           child: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          ElevatedButton(
-            onPressed: () => gkey.currentState?._increment(),
-            child: Text('Increment'),
-          ),
+              ElevatedButton(
+                onPressed: () => gkey.currentState?._increment(),
+                child: Text('Increment'),
+              ),
           SizedBox(height: 30),
           MyTextWidget(key: gkey),
         ]),
