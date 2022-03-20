@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:the_movie_db/movie_details/movie_details_listview.dart';
 
 import 'auth/authorization_page.dart';
-import 'example/my_builder.dart';
-import 'example/my_keys.dart';
+import 'example/inherited_pass_data_to_child_finish.dart';
 
 void main(List<String> args) {
   return runApp(MainWidget());
@@ -18,7 +17,8 @@ class MainWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => MyBuilder(),
+          '/': (context) => Example(),
+          // '/': (context) => MyBuilder(),
 
           // '/': (context) => MainPage(),
           '/movie_details_page': (context) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+final ckey = GlobalKey<_ColoredWidgetState>();
+
 class ColoredWidget extends StatefulWidget {
   final Widget child;
   final Color initalColor;
@@ -19,14 +21,17 @@ class _ColoredWidgetState extends State<ColoredWidget> {
   }
 
   void changeColor(Color color) {
-    this.color = color;
+    setState(() {
+      this.color = color;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(50),
-      color: widget.initalColor,
+      color: color,
+      child: widget.child,
     );
   }
 }
@@ -34,19 +39,30 @@ class _ColoredWidgetState extends State<ColoredWidget> {
 class MyBuilder extends StatelessWidget {
   const MyBuilder({Key? key}) : super(key: key);
   void _onPressed(BuildContext context) {
-    context
-        .findAncestorStateOfType<_ColoredWidgetState>()
-        ?.changeColor(Colors.deepPurpleAccent);
+    // context
+    //     .findRootAncestorStateOfType<_ColoredWidgetState>()
+    //     ?.changeColor(Colors.red);
+    // ckey.currentState?.changeColor(Colors.black);
   }
 
   @override
   Widget build(BuildContext context) {
     return ColoredWidget(
-      initalColor: Colors.blue,
-      child: Center(
+      initalColor: Colors.cyanAccent,
+      child: Container(
+        color: Colors.amber,
+        padding: EdgeInsets.all(50),
         child: Builder(builder: (context) {
-          return ElevatedButton(
-              onPressed: () => _onPressed(context), child: Text('ЖМИ'));
+          return ColoredWidget(
+            key: ckey,
+            initalColor: Colors.blue,
+            child: Center(child: Builder(builder: (context) {
+              return ElevatedButton(
+                onPressed: () => _onPressed(context),
+                child: Text('ЖМИ'),
+              );
+            })),
+          );
         }),
       ),
     );

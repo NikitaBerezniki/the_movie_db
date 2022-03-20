@@ -1,0 +1,20 @@
+{
+	"Flutter Inherited Widget":{
+		"prefix": "Flutter inherited widget",
+		"description": "create Flutter Inherited Widget",
+		"body": 
+			["class $1 extends InheritedWidget {",
+			"\tfinal String $2;",
+			"\t$1({",
+				"\t\tKey? key,",
+				"\t\trequired this.$2,",
+				  "\t\trequired Widget child,",
+				"\t}) : super(key: key, child: child);",
+				"\n\t@override",
+				"\tbool updateShouldNotify($1 oldWidget) {",
+				"\t\treturn oldWidget.$2 != $2;",
+				"\t}",
+			  "}"
+			]
+	}
+}
