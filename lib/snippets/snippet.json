@@ -4,7 +4,7 @@
 		"description": "create Flutter Inherited Widget",
 		"body": 
 			["class $1 extends InheritedWidget {",
-			"\tfinal String $2;",
+			"\tvar $2;",
 			"\t$1({",
 				"\t\tKey? key,",
 				"\t\trequired this.$2,",
