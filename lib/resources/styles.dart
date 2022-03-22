@@ -16,3 +16,12 @@ abstract class AppTextStyle {
   static const TextStyle textBlack22 =
       TextStyle(fontSize: 22, color: Colors.black);
 }
+
+
+abstract class AppTextFieldStyle{
+  static const inputDecorationTextField = InputDecoration(
+    border: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.blue, style: BorderStyle.solid),
+        borderRadius: BorderRadius.all(Radius.elliptical(5, 10))),
+    labelText: 'Введите число');
+}

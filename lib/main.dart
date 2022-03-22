@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/movie_details/movie_details_listview.dart';
 
+import 'Calculator/calculator_widget.dart';
 import 'auth/authorization_page.dart';
-import 'example/inherited_communicate.dart';
 
 void main(List<String> args) {
   return runApp(MainWidget());
@@ -17,7 +17,7 @@ class MainWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => ExampleInheritedCommunicate(),
+          '/': (context) => SimpleCalculatorWidget(),
           // '/': (context) => MyBuilder(),
 
           // '/': (context) => MainPage(),
