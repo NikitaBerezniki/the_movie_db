@@ -1,42 +1,18 @@
-/*
-{
-    "id": 1,
-    "name": "Leanne Graham",
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "address": {
-      "street": "Kulas Light",
-      "suite": "Apt. 556",
-      "city": "Gwenborough",
-      "zipcode": "92998-3874",
-      "geo": {
-        "lat": "-37.3159",
-        "lng": "81.1496"
-      }
-    },
-    "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org",
-    "company": {
-      "name": "Romaguera-Crona",
-      "catchPhrase": "Multi-layered client-server neural-net",
-      "bs": "harness real-time e-markets"
-    }
-  },
-*/
-
 class User {
   final int id;
   final String name;
   final String username;
+  final String password;
   final String email;
   final Address address;
   final String phone;
   final String website;
   final Company company;
 
-  User({
+  User( {
     required this.id,
     required this.name,
+    required this.password,
     required this.username,
     required this.email,
     required this.address,
@@ -49,6 +25,7 @@ class User {
     return User(
       id: json['id'] as int,
       name: json['name'] as String,
+      password: json['password']as String,
       username: json['username'] as String,
       email: json['email'] as String,
       address: json['address'] as Address,
@@ -64,7 +41,7 @@ class Address {
   final String suite;
   final String city;
   final String zipcode;
-  final Geopos geo;
+  final List<Geopos> geo;
 
   Address({
     required this.street,
@@ -80,7 +57,9 @@ class Address {
       suite: json['suite'] as String,
       city: json['city'] as String,
       zipcode: json['zipcode'] as String,
-      geo: json['geo'] as Geopos,
+      geo: (json['geo'] as List<Geopos>)
+          .map((dynamic e) => Geopos.fromJson(e as Map<String, String>))
+          .toList(),
     );
   }
 }
@@ -116,4 +95,7 @@ class Company {
       bs: json['bs'] as String,
     );
   }
+  // factory Company.toJson(Map<String, String> json){
+  //   return Company(name: name, catchPhrase: catchPhrase, bs: bs)
+  // }
 }

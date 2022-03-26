@@ -19,9 +19,17 @@ abstract class AppTextStyle {
 
 
 abstract class AppTextFieldStyle{
-  static const inputDecorationTextField = InputDecoration(
+   static InputDecoration underline_start (String label){
+    return InputDecoration(
     border: UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.blue, style: BorderStyle.solid),
         borderRadius: BorderRadius.all(Radius.elliptical(5, 10))),
-    labelText: 'Введите число');
+    labelText: label);
 }
+  }
+//   static const underline_start = InputDecoration(
+//     border: UnderlineInputBorder(
+//         borderSide: BorderSide(color: Colors.blue, style: BorderStyle.solid),
+//         borderRadius: BorderRadius.all(Radius.elliptical(5, 10))),
+//     labelText: 'Введите число');
+// }

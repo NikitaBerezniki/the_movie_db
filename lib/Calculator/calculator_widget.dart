@@ -65,7 +65,7 @@ class FirstArgument extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
-      decoration: AppTextFieldStyle.inputDecorationTextField,
+      decoration: AppTextFieldStyle.underline_start('sadsdas'),
       // onChanged: (value) => CalculatorProvider.of(context)?.firstNumber = value,
       onChanged: (value) => _onChanged(context, value),
     );
@@ -83,7 +83,7 @@ class SecondArgument extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
         inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))],
-        decoration: AppTextFieldStyle.inputDecorationTextField,
+        decoration: AppTextFieldStyle.underline_start('asdasd'),
         onChanged: (value) => _onChanged(context, value));
     // onChanged: (value) =>CalculatorProvider.of(context)?.secondNumber = value);
   }
