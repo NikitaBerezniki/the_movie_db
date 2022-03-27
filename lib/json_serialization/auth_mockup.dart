@@ -100,7 +100,7 @@ class PasswordField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: ((value) => AuthProvider.of(context)?.password = value),
+      onChanged: ((value) => AuthProvider.of(context)?.email = value),
       obscureText: true,
       decoration: AppTextFieldStyle.underline_start('Пароль'),
     );

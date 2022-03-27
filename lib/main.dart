@@ -4,6 +4,7 @@ import 'package:the_movie_db/movie_details/movie_details_listview.dart';
 import 'Calculator/calculator_widget.dart';
 import 'auth/authorization_page.dart';
 // import 'json_serialization/auth_mockup.dart';
+import 'domain/http_mockup.dart';
 import 'json_serialization/auth_mockup.dart';
 import 'main_page.dart';
 
@@ -20,7 +21,8 @@ class MainWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => AuthWidget(),
+          '/':(context)=> HttpMockup(),
+          // '/': (context) => AuthWidget(),
           // '/': (context) => SimpleCalculatorWidget(),
           // '/': (context) => MyBuilder(),
 

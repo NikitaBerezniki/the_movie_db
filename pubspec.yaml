@@ -33,7 +33,9 @@ dependencies:
   flutter_svg: ^1.0.3
   flutter_multi_formatter: ^2.5.1
   intl: ^0.17.0
-  
+  build_runner: ^2.1.8
+  json_annotation: ^4.4.0
+
 dev_dependencies:
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -41,6 +43,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
+  json_serializable: ^6.1.5
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter

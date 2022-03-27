@@ -2,17 +2,15 @@ class User {
   final int id;
   final String name;
   final String username;
-  final String password;
   final String email;
   final Address address;
   final String phone;
   final String website;
   final Company company;
 
-  User( {
+  User({
     required this.id,
     required this.name,
-    required this.password,
     required this.username,
     required this.email,
     required this.address,
@@ -21,19 +19,36 @@ class User {
     required this.company,
   });
 
+  @override
+  String toString() {
+    return 'User: $id $name $username $email $address $phone $website $company\n';
+  }
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'] as int,
       name: json['name'] as String,
-      password: json['password']as String,
       username: json['username'] as String,
       email: json['email'] as String,
-      address: json['address'] as Address,
+      address: Address.fromJson(json['address']),
       phone: json['phone'] as String,
       website: json['website'] as String,
-      company: json['company'] as Company,
+      company: Company.fromJson(json['company']),
     );
   }
+
+        Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'username': username,
+      'address': address.toJson(),
+      'phone':phone,
+      'website':website,
+      'company':company.toJson(),
+    };
+  }
+
 }
 
 class Address {
@@ -41,7 +56,7 @@ class Address {
   final String suite;
   final String city;
   final String zipcode;
-  final List<Geopos> geo;
+  final Geopos geo;
 
   Address({
     required this.street,
@@ -51,17 +66,31 @@ class Address {
     required this.geo,
   });
 
+  @override
+  String toString() {
+    return '(Address: $street $suite $city $zipcode $geo)';
+  }
+
   factory Address.fromJson(Map<String, dynamic> json) {
     return Address(
       street: json['street'] as String,
       suite: json['suite'] as String,
       city: json['city'] as String,
       zipcode: json['zipcode'] as String,
-      geo: (json['geo'] as List<Geopos>)
-          .map((dynamic e) => Geopos.fromJson(e as Map<String, String>))
-          .toList(),
+      geo: Geopos.fromJson(json['geo']),
     );
   }
+
+      Map<String, dynamic> toJson() {
+    return {
+      'street': street,
+      'suite': suite,
+      'city': city,
+      'zipcode': zipcode,
+      'geo': geo.toJson(),
+    };
+  }
+
 }
 
 class Geopos {
@@ -70,12 +99,25 @@ class Geopos {
 
   Geopos({required this.lat, required this.lng});
 
-  factory Geopos.fromJson(Map<String, String> json) {
+  @override
+  String toString() {
+    return '(geo: $lat, $lng)';
+  }
+
+  factory Geopos.fromJson(Map<String, dynamic> paredJson) {
     return Geopos(
-      lat: json['lat'] as String,
-      lng: json['lng'] as String,
+      lat: paredJson['lat'].toString(),
+      lng: paredJson['lng'].toString(),
     );
   }
+
+    Map<String, dynamic> toJson() {
+    return {
+      'lat': lat,
+      'lng': lng
+    };
+  }
+
 }
 
 class Company {
@@ -88,14 +130,25 @@ class Company {
     required this.catchPhrase,
     required this.bs,
   });
-  factory Company.fromJson(Map<String, String> json) {
+
+  @override
+  String toString() {
+    return '(Company: $name, $catchPhrase, $bs)';
+  }
+
+  factory Company.fromJson(Map<String, dynamic> json) {
     return Company(
       name: json['name'] as String,
       catchPhrase: json['catchPhrase'] as String,
       bs: json['bs'] as String,
     );
   }
-  // factory Company.toJson(Map<String, String> json){
-  //   return Company(name: name, catchPhrase: catchPhrase, bs: bs)
-  // }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'catchPhrase': catchPhrase,
+      'bs': bs
+    };
+  }
 }
