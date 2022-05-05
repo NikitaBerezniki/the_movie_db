@@ -1,9 +1,13 @@
-
-
+import 'package:json_annotation/json_annotation.dart';
 
 import '../resources/images.dart';
 
-class Movie {
+// GET /movie/{movie_id}
+
+@JsonSerializable()
+class MovieTemporary {
+
+
   final int id;
   final double rating;
   final Map genre;
@@ -15,21 +19,23 @@ class Movie {
   final DateTime? time;
   final String description;
 
-  Movie(
-      {required this.id,
-      required this.rating,
-      required this.genre,
-      required this.duration,
-      required this.quote,
-      required this.imagePoster,
-      required this.imageBackground,
-      required this.title,
-      required this.time,
-      required this.description});
+  MovieTemporary(
+  {
+    required this.id,
+  required this.rating,
+  required this.genre,
+  required this.duration,
+  required this.quote,
+  required this.imagePoster,
+  required this.imageBackground,
+  required this.title,
+  required this.time,
+  required this.description
+  });
 }
 
-List<Movie> movies = <Movie>[
-  Movie(
+List<MovieTemporary> movies = <MovieTemporary>[
+  MovieTemporary(
     id: 1,
     genre: {'action': '', 'adventures': '', 'fantastic': ''},
     duration: '2h 28m',
@@ -42,7 +48,7 @@ List<Movie> movies = <Movie>[
     description:
         'Мистерио удаётся выяснить истинную личность Человека-паука. С этого момента жизнь Питера Паркера становится невыносимой. Если ранее он мог успешно переключаться между своими амплуа, то сейчас это сделать невозможно. Переворачивается с ног на голову не только жизнь Человека-пауку, но и репутация. Понимая, что так жить невозможно, главный герой фильма «Человек-паук: Нет пути домой» принимает решение обратиться за помощью к своему давнему знакомому Стивену Стрэнджу. Питер Паркер надеется, что с помощью магии он сможет восстановить его анонимность. Стрэндж соглашается помочь.',
   ),
-  Movie(
+  MovieTemporary(
     id: 2,
     rating: 84,
     genre: {'action': '', 'adventures': '', 'fantastic': ''},
@@ -55,7 +61,7 @@ List<Movie> movies = <Movie>[
     description:
         'После двух лет поисков правосудия на улицах Готэма для своих сограждан Бэтмен становится олицетворением беспощадного возмездия.',
   ),
-  Movie(
+  MovieTemporary(
       id: 3,
       rating: 84,
       genre: {'action': '', 'adventures': '', 'fantastic': ''},
@@ -67,7 +73,7 @@ List<Movie> movies = <Movie>[
       time: DateTime.tryParse('24 ноября 2021'),
       description:
           'Удивительная семья Мадригалов живет в спрятанном в горах Колумбии волшебном доме, расположенном в чудесном и очаровательном уголке под названием Энканто. Каждого ребёнка в семье Мадригалов магия этого места благословила уникальным даром — от суперсилы до способности исцелять. Увы, магия обошла стороной одну лишь юную Мирабель. Обнаружив, что магия Энканто находится в опасности, Мирабель'),
-  Movie(
+  MovieTemporary(
       id: 4,
       rating: 84,
       genre: {'action': '', 'adventures': '', 'fantastic': ''},
@@ -79,7 +85,7 @@ List<Movie> movies = <Movie>[
       time: DateTime.tryParse('12 января 2022'),
       description:
           'Спустя 25 лет после жестоких убийств, потрясших тихий городок Вудсборо, и выхода серии культовых слэшеров на основе тех событий старшеклассница Тара подвергается нападению, такому же, как и в фильме. Узнав о случившемся, в Вудсборо возвращается её старшая сестра Сэм и просит помощи у бывшего шерифа городка Дьюи Райли в поимке нового убийцы, скрывающегося за маской Призрачного лица.'),
-  Movie(
+  MovieTemporary(
       id: 5,
       rating: 84,
       genre: {'action': '', 'adventures': '', 'fantastic': ''},
@@ -91,7 +97,7 @@ List<Movie> movies = <Movie>[
       time: DateTime.tryParse('22 декабря 2021'),
       description:
           'Kingsman — организация супершпионов, действующая на благо человечества вдали от любопытных глаз. И один из первых и самых талантливых оперативников в истории организации — Конрад, молодой и наглый сын герцога Оксфордского. Как и многие его друзья он мечтал служить на благо Англии, но в итоге оказался втянут в тайный мир шпионов и убийц.'),
-  Movie(
+  MovieTemporary(
       id: 6,
       rating: 84,
       genre: {'action': '', 'adventures': '', 'fantastic': ''},

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:the_movie_db/models/movie_temporary.dart';
 import 'package:the_movie_db/resources/images.dart';
 import 'package:the_movie_db/widgets/progress_bar_widget.dart';
 
-import '../movie_listview/movie_dataclass.dart';
 
 
 
@@ -15,7 +15,7 @@ final textWhite18bold =
     TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
 
 class MovieDetailsInfoWidet extends StatelessWidget {
-  final Movie movie;
+  final MovieTemporary movie;
   MovieDetailsInfoWidet({Key? key, required this.movie}) : super(key: key);
 
   @override
@@ -80,7 +80,7 @@ class _PeopleFilmWidget extends StatelessWidget {
 }
 
 class _InfoFIlmWidget extends StatelessWidget {
-  final Movie movie;
+  final MovieTemporary movie;
 
   const _InfoFIlmWidget({Key? key, required this.movie}) : super(key: key);
 
@@ -127,7 +127,7 @@ class _ScoreAndVideoWidget extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final Movie movie;
+  final MovieTemporary movie;
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +165,7 @@ class _NameFilmWidget extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final Movie movie;
+  final MovieTemporary movie;
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../movie_listview/movie_dataclass.dart';
+import '../models/movie_temporary.dart';
 import '../resources/styles.dart';
 import '../widgets/progress_bar_widget.dart';
 
 class MyMovieDetailsIntroWidget extends StatefulWidget {
-  final Movie movie;
+  final MovieTemporary movie;
   const MyMovieDetailsIntroWidget({
     Key? key,
     required this.movie,
@@ -42,7 +42,7 @@ class _InformationFilmWidget extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final Movie movie;
+  final MovieTemporary movie;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _InformationFilmWidget extends StatelessWidget {
 }
 
 class _ScoreAndVideoWidget extends StatefulWidget {
-  final Movie movie;
+  final MovieTemporary movie;
   _ScoreAndVideoWidget({Key? key, required this.movie}) : super(key: key);
 
   @override
@@ -102,7 +102,7 @@ class _MetadataFilmWidget extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final Movie movie;
+  final MovieTemporary movie;
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +168,7 @@ class NameMovieWidget extends StatefulWidget {
     required this.movie,
   }) : super(key: key);
 
-  final Movie movie;
+  final MovieTemporary movie;
 
   @override
   State<NameMovieWidget> createState() => _NameMovieWidgetState();
@@ -204,7 +204,7 @@ class _PosterWidget extends StatelessWidget {
     required this.ratioHeightSize,
   }) : super(key: key);
 
-  final Movie movie;
+  final MovieTemporary movie;
   final double ratioHeightSize;
 
   @override

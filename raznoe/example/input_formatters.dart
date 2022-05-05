@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_multi_formatter/formatters/phone_input_formatter.dart';
+// import 'package:flutter_multi_formatter/formatters/phone_input_formatter.dart';
 
 // ignore: must_be_immutable
 class InputFormatters extends StatefulWidget {
@@ -32,7 +32,7 @@ class _InputFormattersState extends State<InputFormatters> {
               onChanged: onChangedText,
               // maxLength: 15,
               inputFormatters: [
-                PhoneInputFormatter()
+                // PhoneInputFormatter()
                 // FilteringTextInputFormatter.allow(RegExp(r'\d+'))
               ],
               controller: phoneController,

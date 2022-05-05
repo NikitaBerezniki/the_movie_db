@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:the_movie_db/service/main_navigation.dart';
+import '../widgets/sliver_appbar_widget.dart';
 
 const double _sizeHeaderText = 24;
 const double _sizeText = 18;
@@ -52,8 +54,8 @@ class InfoAccountWidget extends StatelessWidget {
         ),
         Padding(padding: EdgeInsets.symmetric(vertical: 5)),
         InformationAboutRegistration(),
-        Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-        InformationAboutConfirmationMail(),
+        // Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+        // InformationAboutConfirmationMail(),
         Padding(padding: EdgeInsets.symmetric(vertical: 10)),
       ],
     );
@@ -76,7 +78,7 @@ class _LogInFormWidgetState extends State<_LogInFormWidget> {
 
   void _onlogInToYourAccount() {
     if (emailController.text == 'admin' && passwordController.text == 'admin') {
-      Navigator.of(context).pushNamed('/');
+      Navigator.of(context).pushNamed(MainNavigationOfRoutes.homePage);
     }
   }
 
@@ -115,7 +117,6 @@ class _LogInFormWidgetState extends State<_LogInFormWidget> {
                 const Text('Имя пользователя / Почта', style: _styleInfoText)),
         TextField(
           controller: emailController,
-          // cursorColor: Colors.blue,
           decoration: const InputDecoration(
               enabled: true,
               contentPadding: EdgeInsets.all(5),
@@ -135,8 +136,6 @@ class _LogInFormWidgetState extends State<_LogInFormWidget> {
           cursorColor: Colors.blue,
           autocorrect: false,
           decoration: InputDecoration(
-              // labelText: 'Введите пароль',
-
               contentPadding: EdgeInsets.all(5),
               prefixIcon: Icon(Icons.key_rounded),
               suffixIcon: IconButton(
@@ -170,32 +169,6 @@ class _LogInFormWidgetState extends State<_LogInFormWidget> {
   }
 }
 
-class InformationAboutConfirmationMail extends StatelessWidget {
-  const InformationAboutConfirmationMail({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-        text: TextSpan(children: [
-      const TextSpan(
-          text: 'Если Вы зарегистрировались,'
-              ' но не получили письмо для подтверждения, ',
-          style: _styleInfoText),
-      TextSpan(
-          text: 'нажмите здесь',
-          style: _styleNavigateText,
-          recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              Navigator.of(context).pushNamed('registration');
-            }),
-      const TextSpan(
-        text: ', чтобы отправить письмо повторно.',
-        style: _styleInfoText,
-      )
-    ]));
-  }
-}
-
 class InformationAboutRegistration extends StatelessWidget {
   const InformationAboutRegistration({Key? key}) : super(key: key);
 
@@ -216,70 +189,25 @@ class InformationAboutRegistration extends StatelessWidget {
               style: _styleNavigateText,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Navigator.of(context).pushNamed('registration');
+                  // Navigator.of(context).pushNamed('registration/');
                 }),
-          const TextSpan(text: ', чтобы начать', style: _styleInfoText)
-        ],
-      ),
-    );
-  }
-}
-
-class MySliverAppBar extends SliverAppBar {
-  const MySliverAppBar({Key? key}) : super(key: key);
-}
-
-class MyAppBar extends StatefulWidget {
-  const MyAppBar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<MyAppBar> createState() => _MyAppBarState();
-}
-
-class _MyAppBarState extends State<MyAppBar> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      color: const Color.fromRGBO(3, 37, 65, 1),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const IconButton(
-              onPressed: null,
-              icon: Icon(
-                Icons.menu_rounded,
-                color: Colors.white,
-                size: 35,
-              )),
-          IconButton(
-            onPressed: null,
-            icon: Image.asset('images/logo.png'),
-            iconSize: 60,
-            padding: const EdgeInsets.all(0),
-          ),
-          Row(
-            children: const [
-              IconButton(
-                onPressed: null,
-                icon: Icon(
-                  Icons.person_rounded,
-                  color: Colors.white,
-                  size: 35,
-                ),
-              ),
-              IconButton(
-                onPressed: null,
-                icon: Icon(
-                  Icons.search_rounded,
-                  color: Colors.blue,
-                  size: 35,
-                ),
-              ),
-            ],
-          ),
+          const TextSpan(text: ', чтобы начать.', style: _styleInfoText),
+          const TextSpan(text: '\n\n', style: _styleInfoText),
+          const TextSpan(
+              text: 'Если Вы зарегистрировались,'
+                  ' но не получили письмо для подтверждения, ',
+              style: _styleInfoText),
+          TextSpan(
+              text: 'нажмите здесь',
+              style: _styleNavigateText,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  // Navigator.of(context).pushNamed('registration');
+                }),
+          const TextSpan(
+            text: ', чтобы отправить письмо повторно.',
+            style: _styleInfoText,
+          )
         ],
       ),
     );

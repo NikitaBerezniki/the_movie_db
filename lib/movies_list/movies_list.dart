@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:the_movie_db/service/main_navigation.dart';
 import '../resources/styles.dart';
-import 'movie_dataclass.dart';
+import '../models/movie_temporary.dart';
 
 
 
@@ -12,21 +13,21 @@ class MovieListViewWidget extends StatefulWidget {
 }
 
 class _MovieListViewWidgetState extends State<MovieListViewWidget> {
-  List<Movie> filteredMovies = <Movie>[];
-
+  List<MovieTemporary> filteredMovies = <MovieTemporary>[];
   TextEditingController searchController = TextEditingController();
 
   bool isVisibleSearch = false;
 
   void onMovieTap(int index) {
     final id = movies.elementAt(index).id;
-    Navigator.of(context).pushNamed('/movie_details_page', arguments: id);
+    
+    Navigator.of(context).pushNamed(MainNavigationOfRoutes.movieDetails, arguments: id);
   }
 
   void searchMovies() {
     final query = searchController.text;
     if (query.isNotEmpty) {
-      filteredMovies = movies.where((Movie movie) {
+      filteredMovies = movies.where((MovieTemporary movie) {
         return movie.title.toLowerCase().contains(query.toLowerCase());
       }).toList();
     } else {
@@ -80,7 +81,7 @@ class CardFilmWidget extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final Movie movie;
+  final MovieTemporary movie;
 
   @override
   Widget build(BuildContext context) {

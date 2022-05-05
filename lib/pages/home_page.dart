@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/resources/styles.dart';
 import 'package:the_movie_db/widgets/app_bar_widget.dart';
-import 'animated/animated_rectangle.dart';
-import 'movie_listview/movie_listview.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+import '../movies_list/movies_list.dart';
+
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  int _selectedTab = 2;
+class _HomePageState extends State<HomePage> {
+  int _selectedTab = 1;
   void _onSelectedItem(int index) {
     setState(() {
       _selectedTab = index;
@@ -25,7 +26,6 @@ class _MainPageState extends State<MainPage> {
       body: IndexedStack(index: _selectedTab, children: const [
         Text('123'),
         MovieListViewWidget(),
-        MyDidUpdateWidget(),
         Text('123'),
       ]),
       appBar: simpleAppBar(),

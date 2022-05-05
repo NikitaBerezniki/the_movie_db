@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import '../movie_listview/movie_dataclass.dart';
+import '../models/movie_temporary.dart';
 import '../widgets/app_bar_widget.dart';
 import 'movie_details_cast_widget.dart';
 import 'movie_details_intro.dart';
 
-class MovieDetailsListViewWdiget extends StatefulWidget {
+class MovieDetailsPage extends StatefulWidget {
   final int movieId;
   final ScrollController listViewController = ScrollController();
-  MovieDetailsListViewWdiget({Key? key, required this.movieId})
+  MovieDetailsPage({Key? key, required this.movieId})
       : super(key: key);
 
   @override
-  State<MovieDetailsListViewWdiget> createState() =>
-      _MovieDetailsListViewWdigetState();
+  State<MovieDetailsPage> createState() =>
+      _MovieDetailsPageState();
 }
 
-class _MovieDetailsListViewWdigetState
-    extends State<MovieDetailsListViewWdiget> {
+class _MovieDetailsPageState
+    extends State<MovieDetailsPage> {
   @override
   void initState() {
     super.initState();
