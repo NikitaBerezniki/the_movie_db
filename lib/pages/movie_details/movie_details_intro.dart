@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../models/movie_temporary.dart';
-import '../resources/styles.dart';
-import '../widgets/progress_bar_widget.dart';
+import '../../models/movie_temporary.dart';
+import '../../resources/styles.dart';
+import '../../widgets/progress_bar_widget.dart';
 
 class MyMovieDetailsIntroWidget extends StatefulWidget {
   final MovieTemporary movie;

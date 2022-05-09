@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_movie_db/domain/data_provider/session_data_provider.dart';
 
 import '../resources/images.dart';
 

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/service/main_navigation.dart';
-import '../resources/styles.dart';
-import '../models/movie_temporary.dart';
+import '../../models/movie_temporary.dart';
+import '../../resources/styles.dart';
 
-
-
-class MovieListViewWidget extends StatefulWidget {
-  const MovieListViewWidget({Key? key}) : super(key: key);
+class MovieListPage extends StatefulWidget {
+  const MovieListPage({Key? key}) : super(key: key);
 
   @override
-  State<MovieListViewWidget> createState() => _MovieListViewWidgetState();
+  State<MovieListPage> createState() => _MovieListPageState();
 }
 
-class _MovieListViewWidgetState extends State<MovieListViewWidget> {
+class _MovieListPageState extends State<MovieListPage> {
   List<MovieTemporary> filteredMovies = <MovieTemporary>[];
   TextEditingController searchController = TextEditingController();
 
@@ -20,10 +18,12 @@ class _MovieListViewWidgetState extends State<MovieListViewWidget> {
 
   void onMovieTap(int index) {
     final id = movies.elementAt(index).id;
-    
-    Navigator.of(context).pushNamed(MainNavigationOfRoutes.movieDetails, arguments: id);
+
+    Navigator.of(context)
+        .pushNamed(MainNavigationOfRoutes.movieDetailsPage, arguments: id);
   }
 
+// Consolas, 'Courier New', monospace
   void searchMovies() {
     final query = searchController.text;
     if (query.isNotEmpty) {

@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
-import '../models/movie_temporary.dart';
-import '../widgets/app_bar_widget.dart';
+import '../../models/movie_temporary.dart';
+import '../../widgets/simple_app_bar_widget.dart';
 import 'movie_details_cast_widget.dart';
 import 'movie_details_intro.dart';
 
-class MovieDetailsPage extends StatefulWidget {
+class MovieDetailsScreen extends StatefulWidget {
   final int movieId;
   final ScrollController listViewController = ScrollController();
-  MovieDetailsPage({Key? key, required this.movieId})
-      : super(key: key);
+  MovieDetailsScreen({Key? key, required this.movieId}) : super(key: key);
 
   @override
-  State<MovieDetailsPage> createState() =>
-      _MovieDetailsPageState();
+  State<MovieDetailsScreen> createState() => _MovieDetailsScreenState();
 }
 
-class _MovieDetailsPageState
-    extends State<MovieDetailsPage> {
+class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   @override
   void initState() {
     super.initState();

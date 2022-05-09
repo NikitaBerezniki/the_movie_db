@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../resources/images.dart';
+import '../../resources/images.dart';
+
 
 class MovieDetailsCastWidget extends StatelessWidget {
   const MovieDetailsCastWidget({Key? key}) : super(key: key);

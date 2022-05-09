@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:the_movie_db/pages/main/main_screen_model.dart';
 import 'package:the_movie_db/resources/styles.dart';
-import 'package:the_movie_db/widgets/app_bar_widget.dart';
+import 'package:the_movie_db/service/notifier_provider.dart';
+import 'package:the_movie_db/widgets/simple_app_bar_widget.dart';
 
-import '../movies_list/movies_list.dart';
+import '../movies_list/movies_list_screen.dart';
 
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainScreenState extends State<MainScreen> {
   int _selectedTab = 1;
   void _onSelectedItem(int index) {
     setState(() {
@@ -22,11 +23,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final model = NotifierProvider.of<MainScreenModel>(context);
     return Scaffold(
-      body: IndexedStack(index: _selectedTab, children: const [
-        Text('123'),
-        MovieListViewWidget(),
-        Text('123'),
+      body: IndexedStack(index: _selectedTab, children: [
+        Container(),
+        MovieListPage(),
+        Container(),
       ]),
       appBar: simpleAppBar(),
       // drawer: CategoriesDrawerWidget(),
