@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class Genre {
@@ -8,7 +7,7 @@ class Genre {
     required this.id,
     required this.name,
   });
-
+    
 
   Genre copyWith({
     int? id,
@@ -47,6 +46,7 @@ class Genre {
     return other is Genre &&
       other.id == id &&
       other.name == name;
+      
   }
 
   @override

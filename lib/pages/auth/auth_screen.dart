@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:the_movie_db/pages/auth/auth_model.dart';
-import 'package:the_movie_db/service/main_navigation.dart';
-import 'package:the_movie_db/service/notifier_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:the_movie_db/models/auth_model.dart';
+import 'package:the_movie_db/service/my_notifier_provider.dart';
 import '../../widgets/sliver_appbar_widget.dart';
 import 'info_account.dart';
 
-class AuthorizationScreen extends StatelessWidget {
-  const AuthorizationScreen({Key? key}) : super(key: key);
+class AuthScreen extends StatelessWidget {
+  const AuthScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +36,7 @@ class _LogInFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = NotifierProvider.of<AuthScreenModel>(context);
-
+    // final model = NotifierProvider.of<AuthModel>(context);
     const _customInputDecoration = OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(5)),
         borderSide: BorderSide(color: Colors.black),
@@ -49,61 +48,66 @@ class _LogInFormWidget extends StatelessWidget {
         ),
         gapPadding: 5);
 
-    return Column(children: [
-      Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.symmetric(vertical: 5),
-          child: const Text('Имя пользователя / Почта',
-              style: TextStyle(fontSize: 18, color: Colors.black))),
-      TextField(
-        controller: model?.usernameController,
-        decoration: const InputDecoration(
-            enabled: true,
-            contentPadding: EdgeInsets.all(5),
-            prefixIcon: Icon(Icons.person),
-            border: _customInputDecoration),
-        autocorrect: true,
-      ),
-      const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
-      Container(
-        alignment: Alignment.centerLeft,
-        child: const Text('Пароль',
-            style: TextStyle(fontSize: 18, color: Colors.black)),
-        padding: EdgeInsets.symmetric(vertical: 5),
-      ),
-      TextField(
-        controller: model?.passwordController,
-        obscureText: model?.isPasswordDisplay ?? true,
-        cursorColor: Colors.blue,
-        autocorrect: false,
-        decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(5),
-            prefixIcon: Icon(Icons.key_rounded),
-            suffixIcon: IconButton(
-                onPressed: model?.onSwitchPasswordDisplay,
-                icon: model?.isPasswordDisplay == true
-                    ? Icon(Icons.visibility_off)
-                    : Icon(Icons.visibility)),
-            errorBorder: _customErrorInputDecoration,
-            border: _customInputDecoration),
-      ),
-      const _ErrorMessageWidget(),
-      Container(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Row(
-          children: [
-            _AuthButton(),
-            const Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
-            TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Забыли пароль? Восстановить',
-                  style: TextStyle(fontSize: 16),
-                ))
-          ],
+    return Consumer<AuthModel>(builder: (context, model, child) {
+      return Column(children: [
+        Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: const Text('Имя пользователя / Почта',
+                style: TextStyle(fontSize: 18, color: Colors.black))),
+        TextField(
+          controller: model.usernameController,
+          decoration: const InputDecoration(
+              enabled: true,
+              contentPadding: EdgeInsets.all(5),
+              prefixIcon: Icon(Icons.person),
+              border: _customInputDecoration),
+          autocorrect: true,
         ),
-      ),
-    ]);
+        const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: const Text('Пароль',
+              style: TextStyle(fontSize: 18, color: Colors.black)),
+          padding: EdgeInsets.symmetric(vertical: 5),
+        ),
+        TextField(
+          controller: model.passwordController,
+          obscureText: model.isPasswordDisplay,
+          cursorColor: Colors.blue,
+          autocorrect: false,
+          decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(5),
+              prefixIcon: Icon(Icons.key_rounded),
+              suffixIcon: IconButton(
+                  onPressed: model.onSwitchPasswordDisplay,
+                  icon: model.isPasswordDisplay == true
+                      ? Icon(Icons.visibility_off)
+                      : Icon(Icons.visibility)),
+              errorBorder: _customErrorInputDecoration,
+              border: _customInputDecoration),
+        ),
+        const _ErrorMessageWidget(),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(child: _AuthButton()),
+              const Padding(padding: EdgeInsets.symmetric(horizontal: 10)),
+              Flexible(
+                child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Забыли пароль? Восстановить',
+                      style: TextStyle(fontSize: 16),
+                    )),
+              )
+            ],
+          ),
+        ),
+      ]);
+    });
   }
 }
 
@@ -112,10 +116,11 @@ class _AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = NotifierProvider.of<AuthScreenModel>(context);
+    // final model = NotifierProvider.of<AuthModel>(context);
+    final model = Provider.of<AuthModel>(context, listen: false);
     final onPressed =
-        model?.canStartAuth == true ? () => model?.auth(context) : null;
-    final child = model?.isAuthProgress == true
+        model.canStartAuth == true ? () => model.auth(context) : null;
+    final child = model.isAuthProgress == true
         ? SizedBox(
             height: 18,
             width: 18,
@@ -131,7 +136,7 @@ class _ErrorMessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final errorMessage =
-        NotifierProvider.of<AuthScreenModel>(context)?.errorMessage;
+        MyNotifierProvider.of<AuthModel>(context)?.errorMessage;
     if (errorMessage == null) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),

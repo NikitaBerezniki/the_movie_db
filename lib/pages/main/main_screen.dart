@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:the_movie_db/pages/main/main_screen_model.dart';
+// import 'package:the_movie_db/pages/main/main_screen_model.dart';
 import 'package:the_movie_db/resources/styles.dart';
-import 'package:the_movie_db/service/notifier_provider.dart';
+// import 'package:the_movie_db/service/notifier_provider.dart';
 import 'package:the_movie_db/widgets/simple_app_bar_widget.dart';
 
 import '../movies_list/movies_list_screen.dart';
@@ -23,11 +23,11 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final model = NotifierProvider.of<MainScreenModel>(context);
+    // final model = NotifierProvider.of<MainScreenModel>(context);
     return Scaffold(
       body: IndexedStack(index: _selectedTab, children: [
         Container(),
-        MovieListPage(),
+        MovieListScreen(),
         Container(),
       ]),
       appBar: simpleAppBar(),

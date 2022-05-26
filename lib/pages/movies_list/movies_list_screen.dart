@@ -1,76 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:the_movie_db/domain/api_client/api_client.dart';
+import 'package:the_movie_db/domain/entities/movie.dart';
+import 'package:the_movie_db/models/movie_list_model.dart';
 import 'package:the_movie_db/service/main_navigation.dart';
-import '../../models/movie_temporary.dart';
+// import '../../domain/entities/movie_temporary.dart';
 import '../../resources/styles.dart';
 
-class MovieListPage extends StatefulWidget {
-  const MovieListPage({Key? key}) : super(key: key);
+class MovieListScreen extends StatefulWidget {
+  const MovieListScreen({Key? key}) : super(key: key);
 
   @override
-  State<MovieListPage> createState() => _MovieListPageState();
+  State<MovieListScreen> createState() => _MovieListScreenState();
 }
 
-class _MovieListPageState extends State<MovieListPage> {
-  List<MovieTemporary> filteredMovies = <MovieTemporary>[];
-  TextEditingController searchController = TextEditingController();
+class _MovieListScreenState extends State<MovieListScreen> {
+  // List<Movie> filteredMovies = [];
+  // TextEditingController searchController = TextEditingController();
+  // bool isVisibleSearch = false;
 
-  bool isVisibleSearch = false;
+  // void searchMovies() {
+  //   final query = searchController.text;
+  //   if (query.isNotEmpty) {
+  //     filteredMovies = movies.where((MovieTemporary movie) {
+  //       return movie.title.toLowerCase().contains(query.toLowerCase());
+  //     }).toList();
+  //   } else {
+  //     filteredMovies = movies;
+  //   }
+  //   setState(() {});
+  // }
 
-  void onMovieTap(int index) {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // searchMovies();
+  //   // searchController.addListener(searchMovies);
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<MovieListModel>(context, listen: false).getPopularMovieList();
+    });
+  }
+
+  void onMovieTap(movies, int index) {
     final id = movies.elementAt(index).id;
 
     Navigator.of(context)
         .pushNamed(MainNavigationOfRoutes.movieDetailsPage, arguments: id);
   }
 
-// Consolas, 'Courier New', monospace
-  void searchMovies() {
-    final query = searchController.text;
-    if (query.isNotEmpty) {
-      filteredMovies = movies.where((MovieTemporary movie) {
-        return movie.title.toLowerCase().contains(query.toLowerCase());
-      }).toList();
-    } else {
-      filteredMovies = movies;
-    }
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    searchMovies();
-    searchController.addListener(searchMovies);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ListView.builder(
-          // padding: isVisibleSearch ? const EdgeInsets.only(top: 70) : null,
-          // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          itemCount: filteredMovies.length,
-          itemExtent: 163,
-          itemBuilder: (BuildContext context, int index) {
-            final movie = filteredMovies.elementAt(index);
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Stack(children: [
-                CardFilmWidget(movie: movie),
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(10),
-                    onTap: () => onMovieTap(index),
-                  ),
-                ),
-              ]),
-            );
-          },
-        ),
-        // SearchWidget(isVisibleSearch: isVisibleSearch, searchController: searchController)
-      ],
+    return Consumer<MovieListModel>(
+      builder: (context, model, child) {
+        return Stack(
+          children: [
+            ListView.builder(
+              // padding: isVisibleSearch ? const EdgeInsets.only(top: 70) : null,
+              // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              itemCount: model.movies.length,
+              itemExtent: 163,
+              itemBuilder: (BuildContext context, int index) {
+                // final movie = filteredMovies.elementAt(index);
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Stack(children: [
+                    CardFilmWidget(movie: model.movies.elementAt(index)),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(10),
+                        onTap: () => onMovieTap(model.movies, index),
+                      ),
+                    ),
+                  ]),
+                );
+              },
+            ),
+            // SearchWidget(isVisibleSearch: isVisibleSearch, searchController: searchController)
+          ],
+        );
+      },
     );
   }
 }
@@ -81,7 +96,7 @@ class CardFilmWidget extends StatelessWidget {
     required this.movie,
   }) : super(key: key);
 
-  final MovieTemporary movie;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -99,26 +114,28 @@ class CardFilmWidget extends StatelessWidget {
       ),
       clipBehavior: Clip.hardEdge,
       child: Row(children: [
-        Image.asset(movie.imagePoster),
+        Image.network(
+          ApiClient.makeUrlForImage(movie.posterPath) ?? '',
+        ),
         const SizedBox(width: 16),
         Expanded(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const SizedBox(height: 20),
             Text(
-              movie.title,
+              '${movie.title} (${movie.releaseDate?.year})',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
             Text(
-              "${movie.time?.day} ${movie.time?.month} ${movie.time?.year}",
+              'Дата выхода: ${movie.releaseDate?.day}.${movie.releaseDate?.month}.${movie.releaseDate?.year}',
               style: const TextStyle(color: Colors.grey, fontSize: 14),
             ),
             const SizedBox(height: 20),
             Text(
-              movie.description,
+              movie.overview,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

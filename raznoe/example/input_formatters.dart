@@ -31,7 +31,7 @@ class _InputFormattersState extends State<InputFormatters> {
             child: TextField(
               onChanged: onChangedText,
               // maxLength: 15,
-              inputFormatters: [
+              inputFormatters: const [
                 // PhoneInputFormatter()
                 // FilteringTextInputFormatter.allow(RegExp(r'\d+'))
               ],

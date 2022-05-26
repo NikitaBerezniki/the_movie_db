@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/resources/images.dart';
 import 'package:the_movie_db/service/main_navigation.dart';
-import 'package:the_movie_db/domain/data_provider/session_data_provider.dart';
+import 'package:the_movie_db/service/session_id_provider.dart';
 import '../resources/styles.dart';
 
 AppBar simpleAppBar() {
-
-  Future<void> exitOfSession(context)async{
-await SessionDataProvider().setSessionId(null);
-                Navigator.of(context).pushReplacementNamed(
-                    MainNavigationOfRoutes.authPage);
+  Future<void> exitOfSession(context) async {
+    await SessionIdProvider().setSessionId(null);
+    Navigator.of(context).pushReplacementNamed(MainNavigationOfRoutes.authPage);
   }
 
   return AppBar(
@@ -21,13 +19,11 @@ await SessionDataProvider().setSessionId(null);
         onPressed: () {}),
     centerTitle: true,
     actions: [
-      Builder(
-        builder: (context) {
-          return IconButton(
-              onPressed: ()=>exitOfSession(context),
-              icon: const Icon(Icons.person));
-        }
-      ),
+      Builder(builder: (context) {
+        return IconButton(
+            onPressed: () => exitOfSession(context),
+            icon: const Icon(Icons.person));
+      }),
       IconButton(onPressed: () {}, icon: const Icon(Icons.search))
     ],
   );
