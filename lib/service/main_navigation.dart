@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_movie_db/models/auth_model.dart';
-import 'package:the_movie_db/service/my_notifier_provider.dart';
 import '../pages/auth/auth_screen.dart';
 import '../pages/main/main_screen.dart';
-import '../models/main_screen_model.dart';
 import '../pages/movie_details/movie_details_screen.dart';
+
 
 abstract class MainNavigationOfRoutes {
   static const String homePage = '/movies_list';
@@ -24,16 +22,16 @@ class MainNavigation {
   };
 
   Route<Object>? onGenerateRoute(RouteSettings settings) {
-    // final configuration = settings.arguments;
-    // switch (settings.name) {
-    //   case MainNavigationOfRoutes.movieDetailsPage:
-    //     final arguments = settings.arguments;
-    //     final movieId = arguments is int ? arguments : 0;
-    //     return MaterialPageRoute(
-    //         builder: ((context) => MovieDetailsScreen(movieId: movieId)));
-    //   default:
-    //     onUnknownRoute;
-    // }
+    final configuration = settings.arguments;
+    switch (settings.name) {
+      case MainNavigationOfRoutes.movieDetailsPage:
+        final arguments = settings.arguments;
+        final movieId = arguments is int ? arguments : 0;
+        return MaterialPageRoute(
+            builder: ((context) => MovieDetailsScreen(movieId: movieId)));
+      default:
+        onUnknownRoute;
+    }
     return null;
   }
 

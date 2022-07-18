@@ -50,7 +50,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
     final id = movies.elementAt(index).id;
 
     Navigator.of(context)
-        .pushNamed(MainNavigationOfRoutes.movieDetailsPage, arguments: id);
+        .pushNamed(MainNavigationOfRoutes.movieDetailsPage, arguments: index);
   }
 
   @override

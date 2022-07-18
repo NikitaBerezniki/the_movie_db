@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/domain/entities/movie.dart';
+import '../../domain/api_client/api_client.dart';
 import '../../resources/styles.dart';
 import '../../widgets/progress_bar_widget.dart';
 
-class MyMovieDetailsIntroWidget extends StatefulWidget {
+class MovieDetailsIntro extends StatefulWidget {
   final Movie movie;
-  const MyMovieDetailsIntroWidget({
+  const MovieDetailsIntro({
     Key? key,
     required this.movie,
   }) : super(key: key);
 
   @override
-  State<MyMovieDetailsIntroWidget> createState() => _MyMovieDetailsIntroWidgetState();
+  State<MovieDetailsIntro> createState() => _MovieDetailsIntroState();
 }
 
-class _MyMovieDetailsIntroWidgetState extends State<MyMovieDetailsIntroWidget> {
+class _MovieDetailsIntroState extends State<MovieDetailsIntro> {
   @override
   Widget build(BuildContext context) {
     final movie = widget.movie;
@@ -49,11 +50,12 @@ class _InformationFilmWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(movie.quote, style: TextStyle(color: Colors.grey, fontSize: 22)),
+        Text(movie.overview,
+            style: TextStyle(color: Colors.grey, fontSize: 22)),
         SizedBox(height: 10),
         Text('Обзор', style: AppTextStyle.textStyleDrawer),
         SizedBox(height: 10),
-        Text(movie.description, style: AppTextStyle.textWhite16),
+        Text(movie.overview, style: AppTextStyle.textWhite16),
       ]),
     );
   }
@@ -77,7 +79,8 @@ class _ScoreAndVideoWidgetState extends State<_ScoreAndVideoWidget> {
             onPressed: () {},
             child: Row(
               children: [
-                RadialProgressBar(sizeBar: 50, percent: widget.movie.rating),
+                RadialProgressBar(
+                    sizeBar: 50, percent: widget.movie.popularity),
                 SizedBox(width: 10),
                 Text('Рейтинг фильма', style: AppTextStyle.textWhite16),
               ],
@@ -116,15 +119,15 @@ class _MetadataFilmWidget extends StatelessWidget {
             children: [
               ratingAgeSystem(),
               SizedBox(width: 10),
-              movieDate(),
+              // movieDate(),
               SizedBox(width: 5),
               Text('(RU) -', style: AppTextStyle.textWhite16),
               SizedBox(width: 5),
-              Text(movie.duration, style: AppTextStyle.textWhite16),
+              // Text(movie.duration, style: AppTextStyle.textWhite16),
             ],
           ),
           SizedBox(height: 5),
-          genresOfTheFilm()
+          // genresOfTheFilm()
         ],
       ),
     );
@@ -132,7 +135,7 @@ class _MetadataFilmWidget extends StatelessWidget {
 
   Text movieDate() {
     return Text(
-      '${movie.time?.day}/${movie.time?.month}/${movie.time?.year}',
+      '${movie.releaseDate?.day}/${movie.releaseDate?.month}/${movie.releaseDate?.year}',
       style: AppTextStyle.textWhite16,
     );
   }
@@ -149,17 +152,17 @@ class _MetadataFilmWidget extends StatelessWidget {
     );
   }
 
-  Row genresOfTheFilm() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        RichText(
-            text: TextSpan(
-                children: [TextSpan(text: movie.genre.keys.join(', '))],
-                style: AppTextStyle.textWhite16))
-      ],
-    );
-  }
+  // Row genresOfTheFilm() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: [
+  //       RichText(
+  //           text: TextSpan(
+  //               children: [TextSpan(text: movie.genre.keys.join(', '))],
+  //               style: AppTextStyle.textWhite16))
+  //     ],
+  //   );
+  // }
 }
 
 class NameMovieWidget extends StatefulWidget {
@@ -185,9 +188,9 @@ class _NameMovieWidgetState extends State<NameMovieWidget> {
               text: '${widget.movie.title} ',
               style: TextStyle(color: Colors.white, fontSize: 28),
               children: [
-                widget.movie.time?.year != null
+                widget.movie.releaseDate?.year != null
                     ? TextSpan(
-                        text: '(${widget.movie.time?.year})',
+                        text: '(${widget.movie.releaseDate?.year})',
                         style: TextStyle(color: Colors.grey, fontSize: 22))
                     : TextSpan(text: '')
               ]),
@@ -219,10 +222,12 @@ class _PosterWidget extends StatelessWidget {
   }
 
   Container backgroundImage(BuildContext context) {
+    final imageUrl = ApiClient.makeUrlForImage(movie.backdropPath);
+    if (imageUrl == null) return Container();
     return Container(
       color: AppColorStyle.brownBackgroundColor,
-      child: Image.asset(
-        movie.imageBackground,
+      child: Image.network(
+        imageUrl,
         alignment: Alignment.centerRight,
         fit: BoxFit.fitHeight,
         height: MediaQuery.of(context).size.width * ratioHeightSize,
@@ -246,6 +251,7 @@ class _PosterWidget extends StatelessWidget {
   }
 
   Container smallPosterImage(BuildContext context) {
+    if (movie.posterPath == null) return Container();
     return Container(
       alignment: Alignment.centerLeft,
       height: MediaQuery.of(context).size.width * ratioHeightSize,
@@ -253,7 +259,7 @@ class _PosterWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Image.asset(movie.imagePoster),
+        child: Image.network(movie.posterPath!),
       ),
     );
   }
