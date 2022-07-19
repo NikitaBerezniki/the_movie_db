@@ -13,8 +13,8 @@ class CategoriesDrawerWidget extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           children: const [
-            Text('Фильмы', style: AppTextStyle.textStyleDrawer),
-            Text('Сериалы', style: AppTextStyle.textStyleDrawer)
+            Text('Фильмы', style: AppTextStyle.textStyle24White),
+            Text('Сериалы', style: AppTextStyle.textStyle24White)
           ],
         ));
   }

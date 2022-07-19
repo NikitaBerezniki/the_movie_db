@@ -40,7 +40,6 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final movie = movies.where((movie) => movie.id == widget.movieId).first;
 
     return Scaffold(
       // floatingActionButton: isBottomList() == true ?  FloatingActionButton(onPressed: moveDown, child: Icon(Icons.arrow_downward)): null,

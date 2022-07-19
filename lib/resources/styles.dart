@@ -9,24 +9,26 @@ abstract class AppColorStyle {
 }
 
 abstract class AppTextStyle {
-  static const TextStyle textStyleDrawer =
+  static const TextStyle textStyle24White =
       TextStyle(fontSize: 24, color: Colors.white);
+  static const TextStyle textStyle22White =
+      TextStyle(fontSize: 22, color: Colors.white);
   static const TextStyle textWhite16 =
       TextStyle(fontSize: 16, color: Colors.white);
   static const TextStyle textBlack22 =
       TextStyle(fontSize: 22, color: Colors.black);
 }
 
-
-abstract class AppTextFieldStyle{
-   static InputDecoration underlineStart (String label){
+abstract class AppTextFieldStyle {
+  static InputDecoration underlineStart(String label) {
     return InputDecoration(
-    border: UnderlineInputBorder(
-        borderSide: BorderSide(color: Colors.blue, style: BorderStyle.solid),
-        borderRadius: BorderRadius.all(Radius.elliptical(5, 10))),
-    labelText: label);
-}
+        border: UnderlineInputBorder(
+            borderSide:
+                BorderSide(color: Colors.blue, style: BorderStyle.solid),
+            borderRadius: BorderRadius.all(Radius.elliptical(5, 10))),
+        labelText: label);
   }
+}
 //   static const underline_start = InputDecoration(
 //     border: UnderlineInputBorder(
 //         borderSide: BorderSide(color: Colors.blue, style: BorderStyle.solid),

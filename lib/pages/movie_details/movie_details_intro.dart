@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:the_movie_db/domain/entities/movie.dart';
 import '../../domain/api_client/api_client.dart';
@@ -50,10 +52,7 @@ class _InformationFilmWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(movie.overview,
-            style: TextStyle(color: Colors.grey, fontSize: 22)),
-        SizedBox(height: 10),
-        Text('Обзор', style: AppTextStyle.textStyleDrawer),
+        Text('Обзор', style: AppTextStyle.textStyle22White),
         SizedBox(height: 10),
         Text(movie.overview, style: AppTextStyle.textWhite16),
       ]),
@@ -80,7 +79,7 @@ class _ScoreAndVideoWidgetState extends State<_ScoreAndVideoWidget> {
             child: Row(
               children: [
                 RadialProgressBar(
-                    sizeBar: 50, percent: widget.movie.popularity),
+                    sizeBar: 50, percent: widget.movie.voteAverage * 10),
                 SizedBox(width: 10),
                 Text('Рейтинг фильма', style: AppTextStyle.textWhite16),
               ],
@@ -250,16 +249,20 @@ class _PosterWidget extends StatelessWidget {
     );
   }
 
-  Container smallPosterImage(BuildContext context) {
-    if (movie.posterPath == null) return Container();
-    return Container(
-      alignment: Alignment.centerLeft,
-      height: MediaQuery.of(context).size.width * ratioHeightSize,
-      constraints: BoxConstraints(),
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(movie.posterPath!),
+  Widget smallPosterImage(BuildContext context) {
+    final imageUrl = ApiClient.makeUrlForImage(movie.posterPath);
+    if (imageUrl == null) return Container();
+    return Hero(
+      tag: imageUrl,
+      child: Container(
+        alignment: Alignment.centerLeft,
+        height: MediaQuery.of(context).size.width * ratioHeightSize,
+        constraints: BoxConstraints(),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(imageUrl),
+        ),
       ),
     );
   }

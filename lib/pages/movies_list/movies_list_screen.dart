@@ -56,7 +56,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<MovieListModel>(
-      builder: (context, model, child) {
+      builder: (_, model, __) {
         return Stack(
           children: [
             ListView.builder(
@@ -100,6 +100,7 @@ class CardFilmWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = ApiClient.makeUrlForImage(movie.posterPath);
     return Container(
       decoration: BoxDecoration(
         color: AppColorStyle.whiteColor,
@@ -114,8 +115,12 @@ class CardFilmWidget extends StatelessWidget {
       ),
       clipBehavior: Clip.hardEdge,
       child: Row(children: [
-        Image.network(
-          ApiClient.makeUrlForImage(movie.posterPath) ?? '',
+        if (imageUrl != null)
+        Hero(
+          tag: imageUrl ,
+          child: Image.network(
+            imageUrl,
+          ),
         ),
         const SizedBox(width: 16),
         Expanded(
